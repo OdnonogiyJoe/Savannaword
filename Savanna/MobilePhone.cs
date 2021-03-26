@@ -6,16 +6,17 @@ namespace Savanna
 {
     public class MobilePhone : IPhone
     {
+
         public MobilePhone(string number)
         {
             Number = number;
         }
 
-        public string Number { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Number { get ; set ; }
 
         public string GetTypeName(string Number)
         {
-            throw new NotImplementedException();
+            return "мобильный телефон";
         }
     }
 }

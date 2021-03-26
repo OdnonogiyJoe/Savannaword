@@ -18,15 +18,36 @@ namespace Savanna
             {
                     ListPhones = new List<IPhone>();
                     ListPhones.Add(mp);
+                    ListPhones.Add(DefaultPhone);
             }
                 else
             {
-                    ListPhones.Add(DefaultPhone);
+                    ListPhones.Add(mp);
             }
         }
         public void ChangeTypePhone(IPhone phone)
         {
-            List<Phones> = 
+            int index = ListPhones.IndexOf(phone);
+            if (index == -1) { return; }
+            else
+            {
+                if (phone is MobilePhone)//3a
+                {
+                    TownPhone newTypePhone = new TownPhone { Number = phone.Number };
+                }
+                else
+                if (phone is TownPhone)//3b
+                {
+                    MobilePhone newTypePhone = new MobilePhone { Number = phone.Number };
+                }
+                if (phone == DefaultPhone) //3c
+                    DefaultPhone = phone;
+
+                ListPhones.RemoveAt(index);//3d
+                ListPhones.Add(phone);//3e
+            }
+
+
         }
     }
 }

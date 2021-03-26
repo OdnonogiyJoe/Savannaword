@@ -6,11 +6,11 @@ namespace Savanna
 {
     public class TownPhone : IPhone
     {
-        public string Number { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Number { get ; set ; }
 
         public string GetTypeName(string Number)
         {
-            throw new NotImplementedException();
+            return "Городской телефон";
         }
     }
 }
