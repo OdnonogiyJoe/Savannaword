@@ -4,9 +4,7 @@ using System.Text;
 
 namespace Savanna
 {
-    [Serializable]
     class MainVM
     {
-
     }
 }
