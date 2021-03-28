@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Savanna
 {
+    [Serializable]
     public class TownPhone : IPhone
     {
         public string Number { get ; set ; }

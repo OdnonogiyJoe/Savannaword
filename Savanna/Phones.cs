@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Savanna
 {
+    [Serializable]
     class Phones
     {
         public List<IPhone> ListPhones { get; set; } = new List<IPhone>();
@@ -12,7 +13,7 @@ namespace Savanna
         public void AddPhone(string number)
         {
             
-            MobilePhone mp = new MobilePhone(number);
+            MobilePhone mp = new MobilePhone();
             mp.Number = number;
             if (ListPhones != null && ListPhones.Count == 0)
             {
@@ -28,25 +29,32 @@ namespace Savanna
         public void ChangeTypePhone(IPhone phone)
         {
             int index = ListPhones.IndexOf(phone);
-            if (index == -1) { return; }
+            if (index == ListPhones.IndexOf(phone))
+            {
+                if (phone is MobilePhone)
+                {
+                    TownPhone townPhone = new TownPhone { Number = phone.Number };
+                }
+                if (phone is TownPhone)
+                {
+                    MobilePhone mobilePhone = new MobilePhone { Number = phone.Number };
+                }
+                if (phone == DefaultPhone)
+                {
+                    DefaultPhone = phone;
+                }
+                ListPhones.RemoveAt(index);
+                ListPhones.Add(phone);
+            }
             else
             {
-                if (phone is MobilePhone)//3a
-                {
-                    TownPhone newTypePhone = new TownPhone { Number = phone.Number };
-                }
-                else
-                if (phone is TownPhone)//3b
-                {
-                    MobilePhone newTypePhone = new MobilePhone { Number = phone.Number };
-                }
-                if (phone == DefaultPhone) //3c
-                    DefaultPhone = phone;
-
-                ListPhones.RemoveAt(index);//3d
-                ListPhones.Add(phone);//3e
+                return;
             }
+        }
+        public void RemovePhone(IPhone phone)
+        {
 
+            ListPhones.Remove(phone);
 
         }
     }
